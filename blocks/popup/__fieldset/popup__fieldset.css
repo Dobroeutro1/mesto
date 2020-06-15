@@ -1,0 +1,9 @@
+.popup__fieldset {
+  margin: 0 0 30px;
+  border: none;
+  padding: 0;
+}
+
+.popup__fieldset:last-of-type {
+  margin-bottom: 48px;
+}
