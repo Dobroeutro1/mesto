@@ -2,3 +2,8 @@
   background-color: #fff;
   border: none;
 }
+
+.card__like-btn:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}

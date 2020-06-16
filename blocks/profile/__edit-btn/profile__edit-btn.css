@@ -9,6 +9,7 @@
 
 .profile__edit-btn:hover {
   opacity: 0.6;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 700px) {

@@ -1,7 +1,6 @@
 @import url(./__container/popup__container.css);
 @import url(./__title/popup__title.css);
 @import url(./__form/popup__form.css);
-@import url(./__fieldset/popup__fieldset.css);
 @import url(./__input/popup__input.css);
 @import url(./__save-btn/popup__save-btn.css);
 @import url(./__save-text/popup__save-text.css);
@@ -16,8 +15,5 @@
   top: 0;
   left: 0;
   display: none;
-}
-
-.popup_opened {
-  display: flex;
+  z-index: 1;
 }

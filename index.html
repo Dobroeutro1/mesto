@@ -15,29 +15,10 @@
 
   <main class="content">
 
-    <section class="popup">
-      <div class="popup__container">
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <form action="" class="popup__form">
-          <fieldset class="popup__fieldset">
-            <input class="popup__input" type="text" id="name" value="Жак-Ив Кусто">
-          </fieldset>
-          <fieldset class="popup__fieldset">
-            <input class="popup__input" type="text" id="about" value="Исследователь океана">
-          </fieldset>
-          <button type="submit" class="popup__save-btn">
-            <p class="popup__save-text">Сохранить</p>
-          </button>
-        </form>
-        <button class="popup__close-btn">
-          <img src="./img/close-btn.png" alt="Закрыть" class="popup__close-img">
-        </button>
-      </div>
-    </section>
-
     <section class="profile">
       <div class="profile__info">
         <img src="./img/avatar.jpg" alt="Аватар" class="profile__avatar">
+        <!--Я не считаю, что эта обертка лишняя. Она задает флексу колонки. Если ее убрать, то либо текст будет в строку, либо картинка и текст будут колонкой, а это не по макету. Если вынесу картинку из инфо, ток элементы текста расположатся по центру(т.к. space-between). Если оставлю так, то будет изображение и текст выстроятся в колонку.-->
         <div class="profile__text">
           <div class="profile__top">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -116,6 +97,23 @@
   <footer class="footer">
     <p class="footer__copy">© 2020 Mesto Russia</p>
   </footer>
+
+  <section class="popup">
+    <div class="popup__container">
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <form action="#" class="popup__form">
+        <input class="popup__input" type="text" id="name" value="Жак-Ив Кусто">
+        <input class="popup__input" type="text" id="about" value="Исследователь океана">
+        <button type="submit" class="popup__save-btn">
+          <span class="popup__save-text">Сохранить</span>
+        </button>
+      </form>
+      <button class="popup__close-btn">
+        <img src="./img/close-btn.png" alt="Закрыть" class="popup__close-img">
+      </button>
+    </div>
+  </section>
+
   <script src="./script/index.js"></script>
 </body>
 </html>
