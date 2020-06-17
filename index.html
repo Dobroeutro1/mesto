@@ -16,19 +16,15 @@
   <main class="content">
 
     <section class="profile">
+      <img src="./img/avatar.jpg" alt="Аватар" class="profile__avatar">
       <div class="profile__info">
-        <img src="./img/avatar.jpg" alt="Аватар" class="profile__avatar">
-        <!--Я не считаю, что эта обертка лишняя. Она задает флексу колонки. Если ее убрать, то либо текст будет в строку, либо картинка и текст будут колонкой, а это не по макету. Если вынесу картинку из инфо, ток элементы текста расположатся по центру(т.к. space-between). Если оставлю так, то будет изображение и текст выстроятся в колонку.-->
-        <div class="profile__text">
-          <div class="profile__top">
-            <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <button class="profile__edit-btn">
-              <img src="./img/edit-btn.png" alt="Изменить">
-            </button>
-          </div>
-          <p class="profile__subtitle">Исследователь океана</p>
+        <div class="profile__top">
+          <h1 class="profile__title">Жак-Ив Кусто</h1>
+          <button class="profile__edit-btn">
+            <img src="./img/edit-btn.png" alt="Изменить">
+          </button>
         </div>
-        
+        <p class="profile__subtitle">Исследователь океана</p>
       </div>
       <button class="profile__add-btn">
         <img src="./img/add-btn.png" alt="Добавить">

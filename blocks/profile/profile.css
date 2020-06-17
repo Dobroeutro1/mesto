@@ -9,13 +9,15 @@
 
 .profile {
   margin: 0 auto 50px;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 120px 1fr 150px;
+  justify-self: left;
   align-items: center;
 }
 
 @media screen and (max-width: 700px) {
   .profile {
+    display: flex;
     flex-direction: column;
   }
 }
