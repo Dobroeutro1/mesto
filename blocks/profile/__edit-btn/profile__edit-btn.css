@@ -5,6 +5,9 @@
   padding: 0;
   border: 1px solid #FFFFFF;
   transition: opacity 1s linear;
+  background-image: url(../../../img/edit-btn.png);
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .profile__edit-btn:hover {

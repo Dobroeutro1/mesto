@@ -15,6 +15,13 @@
   align-items: center;
 }
 
+@media screen and (max-width: 899px) {
+  .profile {
+    margin-left: 19px;
+    margin-right: 19px;
+  }
+}
+
 @media screen and (max-width: 700px) {
   .profile {
     display: flex;

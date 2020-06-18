@@ -7,6 +7,9 @@
   border: 2px solid #FFFFFF;
   border-radius: 2px;
   transition: opacity 1s linear;
+  background-image: url(../../../img/add-btn.png);
+  background-repeat: no-repeat;
+  background-position: center
 }
 
 .profile__add-btn:hover {

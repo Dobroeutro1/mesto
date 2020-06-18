@@ -7,3 +7,10 @@
   grid-row-gap: 20px;
   justify-content: center;
 }
+
+@media screen and (max-width: 899px) {
+  .cards {
+    margin-left: 19px;
+    margin-right: 19px;
+  }
+}
