@@ -1,9 +1,12 @@
 .popup__close-btn {
+  width: 33px;
+  height: 33px;
   background-color: rgba(0, 0, 0, .5);
+  background-image: url(../../../img/close-btn.png);
   padding: 0;
   border: none;
   position: absolute;
-  top: -9%;
+  top: -10%;
   left: 100%;
   transition: opacity 1s linear;
 }

@@ -27,70 +27,57 @@
       <button class="profile__add-btn"></button>
     </section>
 
-    <section class="cards">
-      <div class="card">
-        <img src="./img/photo.jpg" alt="Фото" class="card__img">
-        <div class="card__item">
-          <h2 class="card__title">Карачаево-Черкессия</h2>
-          <button class="card__like-btn"></button>
+    <div class="cards">
+      <template class="card-template">
+        <div class="card">
+          <img src="" alt="" class="card__img">
+          <div class="card__item">
+            <h2 class="card__title"></h2>
+            <button class="card__like-btn"></button>
+          </div>
+          <button class="card__trash-btn"></button>
         </div>
-      </div>
-      <div class="card">
-        <img src="./img/photo.jpg" alt="Фото" class="card__img">
-        <div class="card__item">
-          <h2 class="card__title">Карачаево-Черкессия</h2>
-          <button class="card__like-btn"></button>
-        </div>
-      </div>
-      <div class="card">
-        <img src="./img/photo.jpg" alt="Фото" class="card__img">
-        <div class="card__item">
-          <h2 class="card__title">Карачаево-Черкессия</h2>
-          <button class="card__like-btn"></button>
-        </div>
-      </div>
-      <div class="card">
-        <img src="./img/photo.jpg" alt="Фото" class="card__img">
-        <div class="card__item">
-          <h2 class="card__title">Карачаево-Черкессия</h2>
-          <button class="card__like-btn"></button>
-        </div>
-      </div>
-      <div class="card">
-        <img src="./img/photo.jpg" alt="Фото" class="card__img">
-        <div class="card__item">
-          <h2 class="card__title">Карачаево-Черкессия</h2>
-          <button class="card__like-btn"></button>
-        </div>
-      </div>
-      <div class="card">
-        <img src="./img/photo.jpg" alt="Фото" class="card__img">
-        <div class="card__item">
-          <h2 class="card__title">Карачаево-Черкессия</h2>
-          <button class="card__like-btn"></button>
-        </div>
-      </div>
-    </section>
-
+      </template>
+    </div>
   </main>
 
   <footer class="footer">
     <p class="footer__copy">© 2020 Mesto Russia</p>
   </footer>
 
-  <section class="popup">
+  <section class="popup" data-popup-name="popup-profile">
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
       <form action="#" class="popup__form">
-        <input class="popup__input" type="text" id="name" value="Жак-Ив Кусто">
-        <input class="popup__input" type="text" id="about" value="Исследователь океана">
+        <input class="popup__input" type="text" id="name-profile" value="Жак-Ив Кусто">
+        <input class="popup__input" type="text" id="about-profile" value="Исследователь океана">
         <button type="submit" class="popup__save-btn">
           <span class="popup__save-text">Сохранить</span>
         </button>
       </form>
-      <button class="popup__close-btn">
-        <img src="./img/close-btn.png" alt="Закрыть" class="popup__close-img">
-      </button>
+      <button class="popup__close-btn"></button>
+    </div>
+  </section>
+
+  <section class="popup" data-popup-name="popup-card">
+    <div class="popup__container">
+      <h2 class="popup__title">Новое место</h2>
+      <form action="#" class="popup__form">
+        <input class="popup__input" type="text" value="" id="name-card" placeholder="Название">
+        <input class="popup__input" type="text" id="link-card" placeholder="Ссылка на картинку">
+        <button type="submit" class="popup__save-btn popup__create-card">
+          <span class="popup__save-text popup__create-card">Создать</span>
+        </button>
+      </form>
+      <button class="popup__close-btn"></button>
+    </div>
+  </section>
+
+  <section class="popup" data-popup-name="popup-image">
+    <div class="popup__container popup__container-image">
+      <img src="" alt="" class="popup__image">
+      <h2 class="popup__title-img"></h2>
+      <button class="popup__close-btn popup__close-btn-img"></button>
     </div>
   </section>
 
