@@ -63,11 +63,10 @@ function createCard(name, link) {
   });
 
   return cardElement;
-  // cards.prepend(cardElement);                                                       // Вставляем карточки в блок карточек
 };
 
 initialCards.forEach( (initialCardsElement) => {                                    // Перебираем массив с карточками
-  cards.append(createCard(initialCardsElement.name, initialCardsElement.link));                   // Используем функцию создания карточки с аргументами имени и ссылки из массива карточек
+  cards.append(createCard(initialCardsElement.name, initialCardsElement.link));     // Используем функцию создания карточки с аргументами имени и ссылки из массива карточек
 });
 
 const nameInputCard = document.querySelector('#name-card');                         // Получаем инпут названия карточки
@@ -131,7 +130,7 @@ function formSubmitHandlerProfile () {
 
 // Функция обработчик карточки
 function formSubmitHandlerCard() {
-  cards.prepend(createCard(nameInputCard.value, linkInputCard.value));                                                           // Используем функцию создания карточки с аргементами имени и ссылки
+  cards.prepend(createCard(nameInputCard.value, linkInputCard.value));              // Используем функцию создания карточки с аргементами имени и ссылки
 }
 
 formProfile.addEventListener('submit', formSubmitHandlerProfile);                   // Обработчик формы профиля
