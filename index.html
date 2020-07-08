@@ -48,7 +48,7 @@
   <section class="popup" data-popup-name="popup-profile">
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form action="#" class="popup__form">
+      <form action="#" class="popup__form popup__form-profile">
         <input class="popup__input" type="text" id="name-profile" value="Жак-Ив Кусто">
         <input class="popup__input" type="text" id="about-profile" value="Исследователь океана">
         <button type="submit" class="popup__save-btn">
@@ -62,7 +62,7 @@
   <section class="popup" data-popup-name="popup-card">
     <div class="popup__container">
       <h2 class="popup__title">Новое место</h2>
-      <form action="#" class="popup__form">
+      <form action="#" class="popup__form popup__form-card">
         <input class="popup__input" type="text" value="" id="name-card" placeholder="Название">
         <input class="popup__input" type="text" id="link-card" placeholder="Ссылка на картинку">
         <button type="submit" class="popup__save-btn popup__create-card">
@@ -75,7 +75,7 @@
 
   <section class="popup" data-popup-name="popup-image">
     <div class="popup__container popup__container-image">
-      <img src="" alt="" class="popup__image">
+      <img src="" alt="#" class="popup__image"> <!-- Значение alt берется из имени карточки. Реализовано в JS. Поставил решетку, чтобы значение не было пустым -->
       <h2 class="popup__title-img"></h2>
       <button class="popup__close-btn popup__close-btn-img"></button>
     </div>

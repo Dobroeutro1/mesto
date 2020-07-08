@@ -6,3 +6,4 @@
 Использовал: HTML, CSS, JavaScript, Git.
 
 https://github.com/Dobroeutro1/mesto
+https://dobroeutro1.github.io/mesto/
