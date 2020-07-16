@@ -14,11 +14,17 @@
   cursor: pointer;
 }
 
+.popup__save-btn:nth-child(n) {
+  margin: 0;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  color: #fff;
+}
+
 @media screen and (max-width: 549px) {
   .popup__save-btn {
     max-width: 240px;
-    
     margin-bottom: 24px;
-    
   }
 }

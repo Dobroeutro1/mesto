@@ -6,8 +6,11 @@
 @import url(./__form-profile/popup__form-profile.css);
 @import url(./__form-card/popup__form-card.css);
 @import url(./__input/popup__input.css);
+@import url(./__input/_error/popup__input_error.css);
+@import url(./__input-error/popup__input-error.css);
+@import url(./__input-error/_active/popup__input-error_active.css);
 @import url(./__save-btn/popup__save-btn.css);
-@import url(./__save-text/popup__save-text.css);
+@import url(./__save-btn/_error/popup__save-btn_error.css);
 @import url(./__create-card/popup__create-card.css);
 @import url(./__close-btn/popup__close-btn.css);
 @import url(./__title-img/popup__title-img.css);
@@ -24,5 +27,5 @@
   z-index: 1;
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0s 1s, opacity 1s linear;
+  transition: visibility 0s .3s, opacity .3s linear;
 }

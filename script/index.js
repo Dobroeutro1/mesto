@@ -85,7 +85,7 @@ const addButton = document.querySelector('.profile__add-btn');                  
 const editButton = document.querySelector('.profile__edit-btn');                    // Получаем кнопку редактирования профиля
 const closeButton = document.querySelectorAll('.popup__close-btn');                 // Получаем все кнопки закрытия попапа
 const saveButton = document.querySelectorAll('.popup__save-btn');                   // Получаем все кнопки сохранить 
-
+const popupOverlay = document.querySelectorAll('.popup');                           // Получаем все оверлеи попапов
 const popupProfile = document.querySelector('[data-popup-name=popup-profile]');     // Получаем попап профиля
 const popupCard = document.querySelector('[data-popup-name=popup-card]');           // Получаем попап добавления карточки
 
@@ -96,8 +96,8 @@ addButton.addEventListener('click', () => {                                     
 });
 editButton.addEventListener('click', () => {                                        // Обработчик на кнопку редактирования карточки
   popupProfile.classList.toggle('popup_opened');                                    // При выборе кнопки меняем класс у попапа
-  nameInput.value = profileName.textContent;                                        // При открытии попапа, значение инпута имени принимает значение поля имени профиля
-  jobInput.value = profileAbout.textContent;                                        // При открытии попапа, значение инпута "о себе" принимает значение поля имени профиля
+  nameInputProfile.value = profileName.textContent;                                 // При открытии попапа, значение инпута имени принимает значение поля имени профиля
+  jobInputProfile.value = profileAbout.textContent;                                 // При открытии попапа, значение инпута "о себе" принимает значение поля имени профиля
 });
 closeButton.forEach( (closeButtonElement) => {                                      // Перебираем массив кнопок закрытия
   const popup = closeButtonElement.closest('.popup');                               // Получаем попап-родитель у конкретной кнопки
@@ -111,6 +111,20 @@ saveButton.forEach( (saveButtonElement) => {                                    
     popup.classList.remove('popup_opened');                                         // Удаление класса у попапа
   });
 });
+popupOverlay.forEach( (popupOverlayElement) => {                                    // Перебираем оверлеи
+  const popup = popupOverlayElement.closest('.popup');                              // Получаем попап-родитель
+  popupOverlayElement.addEventListener('mousedown', (evt) => {                      // Обработчик на нажатие ЛКМ
+    if (evt.target.classList.contains('popup')) {                                   // Условие: если выбранный элемент содержит класс popup,
+      popup.classList.remove('popup_opened');                                       // то удаляем класс __opened у попапа-родителя
+    }
+  });
+});
+window.addEventListener('keydown', (evt) => {                                       // Обработчик нажатия кнопки по window
+  if (evt.key === 'Escape') {                                                       // Если ключ кнопки равен Esc, то
+    const popup = document.querySelector('.popup_opened');                          // Вводим модификатор открытия попапа
+    popup.classList.remove('popup_opened');                                         // И удаляем класс у попапа
+  }
+})
 
 // Значение полей ввода
 const formProfile = document.querySelector('.popup__form-profile');                 // Получаем форму профиля
@@ -129,10 +143,9 @@ function formSubmitHandlerProfile () {
 }
 
 // Функция обработчик карточки
-function formSubmitHandlerCard() {
-  cards.prepend(createCard(nameInputCard.value, linkInputCard.value));              // Используем функцию создания карточки с аргементами имени и ссылки
+function formSubmitHandlerCard () {
+  cards.prepend(createCard(nameInputCard.value, linkInputCard.value));              // Используем функцию создания карточки с аргументами имени и ссылки
 }
 
 formProfile.addEventListener('submit', formSubmitHandlerProfile);                   // Обработчик формы профиля
 formCard.addEventListener('submit', formSubmitHandlerCard);                         // Обработчик формы карточки
-
