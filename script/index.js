@@ -38,8 +38,8 @@ function createCard(name, link) {
 }; 
 
 function closeEsc(evt) {
-  if (evt.key === 'Escape') {                                                       // Если ключ кнопки равен Esc, то 
-    const popup = document.querySelector('.popup_opened');                          // Вводим модификатор открытия попапа 
+  const popup = document.querySelector('.popup_opened');                            // Вводим модификатор открытия попапа
+  if (evt.key === 'Escape' && popup) {                                              // Если ключ кнопки равен Esc, то  
     popup.classList.remove('popup_opened');                                         // И удаляем класс у попапа 
   }
 }
