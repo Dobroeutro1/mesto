@@ -46,7 +46,7 @@ function toggleButtonState(inputList, buttonElement, inactiveButtonClass) {     
 } 
  
 // Функция обработчик на каждый инпут формы 
-function setEventListeners(formElement, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass) {    // Передаем аргументом форму 
+function setEventListeners(formElement, {inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass}) {    // Передаем аргументом форму 
 
   const inputList = Array.from(formElement.querySelectorAll(inputSelector));                // Получаем массив(не псевдомассив, а прям массив) всех инпутов 
   const buttonElement = formElement.querySelector(submitButtonSelector);                    // Получаем кнопку (тут наверное надо все-таки массив кнопок, либо кнопкам тоже ид присвоить) 
@@ -62,14 +62,14 @@ function setEventListeners(formElement, inputSelector, submitButtonSelector, ina
 } 
  
 // Функция применения валидации 
-function enableValidation({formSelector, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass}) { 
+function enableValidation({formSelector, ...rest}) { 
   const formList = Array.from(document.querySelectorAll(formSelector));             // Вводим массив всех форм 
  
   formList.forEach((formElement) => {                                               // Перебираем масив 
     formElement.addEventListener('submit', function (evt) {                         // Обработчик 
       evt.preventDefault();                                                         // Отменяем стандартное браузерное поведение 
     }); 
-    setEventListeners(formElement, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass);          // Вызываем функцию обработчика каждого инпута 
+    setEventListeners(formElement, rest);                                           // Вызываем функцию обработчика каждого инпута 
   }); 
 }
  

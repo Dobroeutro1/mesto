@@ -1,7 +1,7 @@
-const cards = document.querySelector('.cards')                                      // Получаем блок карточек
+const cards = document.querySelector('.cards');                                     // Получаем блок карточек
 const imagePopup = document.querySelector('[data-popup-name=popup-image]');         // Получаем попап изображения 
-const popupImg = document.querySelector('.popup__image');                           // Получаем картинку попапа 
-const popupTitle = document.querySelector('.popup__title-img');                     // Получаем текст попапа 
+const popupImg = imagePopup.querySelector('.popup__image');                         // Получаем картинку попапа 
+const popupTitle = imagePopup.querySelector('.popup__title-img');                   // Получаем текст попапа 
 const cardTemplate = document.querySelector('.card-template').content;              // Получаем разметку карточки 
  
 // Функция создания карточки 
@@ -28,30 +28,30 @@ function createCard(name, link) {
  
   // Попап изображения 
   cardElement.querySelector('.card__img').addEventListener('click', () => {         // Обработчик по клику на картинку карточки 
-    imagePopup.classList.toggle('popup_opened');                                    // Меняем класс у попапа картинки 
+    openPopup(imagePopup);                                                          // Меняем класс у попапа картинки 
     popupTitle.textContent = name;                                                  // Значению текста попапа присваиваем значение name из массива карточек 
     popupImg.src = link;                                                            // Значению ссылки картинки присваиваем значение link из массива карточек 
     popupImg.alt = name;                                                            // Значению alt картинки присваиваем значение name из массива карточек 
   }); 
  
   return cardElement; 
-}; 
+}
 
 function closeEsc(evt) {
   const popup = document.querySelector('.popup_opened');                            // Вводим модификатор открытия попапа
   if (evt.key === 'Escape' && popup) {                                              // Если ключ кнопки равен Esc, то  
-    popup.classList.remove('popup_opened');                                         // И удаляем класс у попапа 
+    closePopup(popup);                                                              // И удаляем класс у попапа 
   }
 }
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closeEsc)
+  document.addEventListener('keydown', closeEsc);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closeEsc) 
+  document.removeEventListener('keydown', closeEsc);
 }
 
 initialCards.forEach( (initialCardsElement) => {                                    // Перебираем массив с карточками 
@@ -63,7 +63,7 @@ const linkInputCard = document.querySelector('#link-card');                     
  
 // Функция добавления карточки 
 function addCard() { 
-  createCard(nameInputCard.value, linkInputCard.value)                              // Используем функцию создания карточки с аргументами инпутов названия и ссылки 
+  createCard(nameInputCard.value, linkInputCard.value);                             // Используем функцию создания карточки с аргументами инпутов названия и ссылки 
 } 
  
 const createCardButton = document.querySelector('.popup__create-card');             // Получаем кнопку создания карточки 
@@ -122,8 +122,6 @@ const nameInputProfile = document.querySelector('#name-profile');               
 const jobInputProfile = document.querySelector('#about-profile');                   // Получаем инпут попапа "о себе" профиля 
 const profileName = document.querySelector('.profile__title');                      // Получаем имя профиля 
 const profileAbout = document.querySelector('.profile__subtitle');                  // Получаем "о себе" профиля 
-const cardName = document.querySelector('.card__title');                            // Получаем название карточки 
-const cardImg = document.querySelector('.card__img');                               // Получаем картинку карточки 
  
 // Функция обработчик профиля 
 function formSubmitHandlerProfile () { 
