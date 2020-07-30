@@ -17,23 +17,21 @@ class FormValidator {
     inputElement.classList.add(this._inputErrorClass);
     errorElement.textContent = errorMessage;
     errorElement.classList.add(this._errorClass);
-    console.log(errorElement);
   }
 
   // Функция скрытия ошибки
   _hideError(inputElement) {
     const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
 
-    inputElement.classList.remove(this._inputErrorClass);
     errorElement.textContent = '';
-    console.log(errorElement);
     errorElement.classList.remove(this._errorClass);
+    inputElement.classList.remove(this._inputErrorClass);
   }
 
   // Функция проверки валидности инпута
   _checkInputValidity(inputElement) {
     if (!inputElement.validity.valid) {
-      this._showError(inputElement, errorMessage);
+      this._showError(inputElement, inputElement.validationMessage);
     } else {
       this._hideError(inputElement);
     }
@@ -64,7 +62,7 @@ class FormValidator {
     this._inputSelector.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement);
-        this._toggleButtonState(inputElement);
+        this._toggleButtonState();
       });
     });
   }
@@ -73,7 +71,7 @@ class FormValidator {
   enableValidation() {
       this._formElement.addEventListener('submit', (evt) => {
         evt.preventDefault();
-      }); 
+      });
       this._setEventListeners();
   }
 }
