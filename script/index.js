@@ -3,38 +3,64 @@ const imagePopup = document.querySelector('[data-popup-name=popup-image]');     
 const popupImg = imagePopup.querySelector('.popup__image');                         // Получаем картинку попапа 
 const popupTitle = imagePopup.querySelector('.popup__title-img');                   // Получаем текст попапа 
 const cardTemplate = document.querySelector('.card-template').content;              // Получаем разметку карточки 
- 
-// Функция создания карточки 
-function createCard(name, link) { 
 
-  const cardElement = cardTemplate.cloneNode(true);                                 // Клонируем карточку 
- 
-  cardElement.querySelector('.card__img').src = link;                               // Присваиваем значение ссылки картинки из переменной link массива карточек 
-  cardElement.querySelector('.card__img').alt = name;                               // Присваиваем значение alt картинки из переменной name массива карточек 
-  cardElement.querySelector('.card__title').textContent = name;                     // Присваиваем значение названия картинки из переменной name массива карточек 
- 
-  // Удаление 
-  const deleteButton = cardElement.querySelector('.card__trash-btn');               // Получаем кнопку удаления карточки 
-  deleteButton.addEventListener('click', () => {                                    // Обработчик кнопки по клику 
-    const card = deleteButton.closest('.card');                                     // Получаем карточку-родилель у кнопки при клике 
-    card.remove();                                                                  // Удаляем карточку-родитель при клике 
-  }); 
- 
-  // Like 
-  const likeButton = cardElement.querySelector('.card__like-btn');                  // Получаем кнопку лайка карточки 
-  likeButton.addEventListener('click', () => {                                      // Обработчик кнопки по клику 
-    likeButton.classList.toggle('card__like-btn_liked');                            // Меняем класс у кнопки лайка при клике 
-  }); 
- 
-  // Попап изображения 
-  cardElement.querySelector('.card__img').addEventListener('click', () => {         // Обработчик по клику на картинку карточки 
+class Card {
+  constructor(cardTemplate, name, link) {
+    this.name = name
+    this.link = link
+    this.cardTemplate = cardTemplate 
+  }
+
+  _getTemplate() {
+    const cardElement = this.cardTemplate.cloneNode(true);                                      
+
+    return cardElement;
+  }
+  
+  _deleteCard() {
+    // Удаление
+    this.card.remove();                                                                  // Удаляем карточку-родитель при клике 
+  }
+
+  _likeCard() {
+    // Like
+    this.likeButton.classList.toggle('card__like-btn_liked');                            // Меняем класс у кнопки лайка при клике  
+  }
+
+  _imageCard() {
+    // Попап изображения 
     openPopup(imagePopup);                                                          // Меняем класс у попапа картинки 
-    popupTitle.textContent = name;                                                  // Значению текста попапа присваиваем значение name из массива карточек 
-    popupImg.src = link;                                                            // Значению ссылки картинки присваиваем значение link из массива карточек 
-    popupImg.alt = name;                                                            // Значению alt картинки присваиваем значение name из массива карточек 
-  }); 
- 
-  return cardElement; 
+    popupTitle.textContent = this.name;                                                  // Значению текста попапа присваиваем значение name из массива карточек 
+    popupImg.src = this.link;                                                            // Значению ссылки картинки присваиваем значение link из массива карточек 
+    popupImg.alt = this.name;                                                            // Значению alt картинки присваиваем значение name из массива карточек 
+  }
+
+  createCard() {
+    this._element = this._getTemplate()
+
+    this._element.querySelector('.card__img').src = this.link;                                
+    this._element.querySelector('.card__img').alt = this.name;                               
+    this._element.querySelector('.card__title').textContent = this.name;
+
+    const deleteButton = this._element.querySelector('.card__trash-btn');
+    const card = deleteButton.closest('.card')
+    this.card = card
+    deleteButton.addEventListener('click', () => {
+      this._deleteCard();                                                             
+    });
+
+    const likeButton = this._element.querySelector('.card__like-btn');
+    this.likeButton = likeButton                 
+    this.likeButton.addEventListener('click', () => {                             
+      this._likeCard();                                                               
+    });
+
+    this._element.querySelector('.card__img').addEventListener('click', () => {          
+      this._imageCard();
+    });
+
+    return this._element
+  }
 }
 
 function closeEsc(evt) {
@@ -55,9 +81,9 @@ function closePopup(popup) {
 }
 
 initialCards.forEach( (initialCardsElement) => {                                    // Перебираем массив с карточками 
-  cards.append(createCard(initialCardsElement.name, initialCardsElement.link));     // Используем функцию создания карточки с аргументами имени и ссылки из массива карточек 
+  cards.append(new Card(cardTemplate, initialCardsElement.name, initialCardsElement.link).createCard());                                                               // Используем функцию создания карточки с аргументами имени и ссылки из массива карточек 
 }); 
- 
+
 const nameInputCard = document.querySelector('#name-card');                         // Получаем инпут названия карточки 
 const linkInputCard = document.querySelector('#link-card');                         // Получаем инпут ссылки картинки 
  
@@ -81,13 +107,11 @@ const popupCard = document.querySelector('[data-popup-name=popup-card]');       
  
 addButton.addEventListener('click', () => {                                         // Обработчик на кнопку добавления карточки 
   openPopup(popupCard);
-  // popupCard.classList.toggle('popup_opened');                                       // Меняем класс у попапа 
   nameInputCard.value = '';                                                         // При открытии попапа, значение инпута названия карточки - пусто 
   linkInputCard.value = '';                                                         // При открытии попапа, значение инпута ссылки карточки - пусто 
 }); 
 editButton.addEventListener('click', () => {                                        // Обработчик на кнопку редактирования карточки 
   openPopup(popupProfile);
-  // popupProfile.classList.toggle('popup_opened');                                    // При выборе кнопки меняем класс у попапа 
   nameInputProfile.value = profileName.textContent;                                 // При открытии попапа, значение инпута имени принимает значение поля имени профиля 
   jobInputProfile.value = profileAbout.textContent;                                 // При открытии попапа, значение инпута "о себе" принимает значение поля имени профиля 
 }); 
@@ -95,14 +119,12 @@ closeButton.forEach( (closeButtonElement) => {                                  
   const popup = closeButtonElement.closest('.popup');                               // Получаем попап-родитель у конкретной кнопки 
   closeButtonElement.addEventListener('click', () => {                              // Обработчик на кнопку закрытия попапа 
     closePopup(popup);
-    // popup.classList.remove('popup_opened');                                         // Удаление класса у попапа 
   }); 
 }); 
 saveButton.forEach( (saveButtonElement) => {                                        // Перебираем массив кнопок сохранения 
   const popup = saveButtonElement.closest('.popup');                                // Получаем попап-родитель у конкретной кнопки 
   saveButtonElement.addEventListener('click', () => {                               // Обработчик на кнопку сохранения попапа
     closePopup(popup); 
-    // popup.classList.remove('popup_opened');                                         // Удаление класса у попапа 
   }); 
 }); 
 popupList.forEach( (popupListElement) => {                                          // Перебираем оверлеи 
@@ -110,7 +132,6 @@ popupList.forEach( (popupListElement) => {                                      
   popupListElement.addEventListener('mousedown', (evt) => {                         // Обработчик на нажатие ЛКМ 
     if (evt.target.classList.contains('popup')) {                                   // Условие: если выбранный элемент содержит класс popup, 
       closePopup(popup);
-      // popup.classList.remove('popup_opened');                                    // то удаляем класс __opened у попапа-родителя 
     } 
   }); 
 }); 
@@ -131,8 +152,8 @@ function formSubmitHandlerProfile () {
  
 // Функция обработчик карточки 
 function formSubmitHandlerCard () { 
-  cards.prepend(createCard(nameInputCard.value, linkInputCard.value));              // Используем функцию создания карточки с аргументами имени и ссылки 
+  cards.prepend(new Card(cardTemplate, nameInputCard.value, linkInputCard.value).createCard());              // Используем функцию создания карточки с аргументами имени и ссылки
 } 
- 
+
 formProfile.addEventListener('submit', formSubmitHandlerProfile);                   // Обработчик формы профиля 
 formCard.addEventListener('submit', formSubmitHandlerCard);                         // Обработчик формы карточки 
