@@ -1,32 +1,3 @@
-// Карточки из коробки 
-
-export const initialCards = [ 
-  {
-    name: 'Архыз', 
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg' 
-  },
-  {
-    name: 'Челябинская область', 
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg' 
-  },
-  {
-    name: 'Иваново', 
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg' 
-  },
-  {                                                                                                       // Массив карточек 
-    name: 'Камчатка', 
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg' 
-  },
-  {
-    name: 'Холмогорский район', 
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg' 
-  },
-  {
-    name: 'Байкал', 
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg' 
-  }
-];
-
 export class Card {
   constructor(cardTemplate, name, link) {
     this.name = name
@@ -35,7 +6,8 @@ export class Card {
     this.imagePopup = document.querySelector('[data-popup-name=popup-image]');         // Получаем попап изображения 
     this.popupImg = this.imagePopup.querySelector('.popup__image');                         // Получаем картинку попапа 
     this.popupTitle = this.imagePopup.querySelector('.popup__title-img');                   // Получаем текст попапа 
-
+    this.cardImg = this.cardTemplate.querySelector('.card__img');
+    this.cardTitle = this.cardTemplate.querySelector('.card__title');
   }
 
   _getTemplate() {
@@ -43,7 +15,7 @@ export class Card {
 
     return cardElement;
   }
-  
+
   _deleteCard() {
     // Удаление
     this.card.remove();                                                                  // Удаляем карточку-родитель при клике 
@@ -56,12 +28,20 @@ export class Card {
 
   _openPopup(popup) {
     popup.classList.add('popup_opened');
-    document.addEventListener('keydown', this._closeEsc);
+    document.addEventListener('keydown', (evt) => {
+      if (evt.key === 'Escape' && popup) {                                              // Если ключ кнопки равен Esc, то  
+        this._closePopup(popup);                                                              // И удаляем класс у попапа 
+      }
+    });
   }
   
   _closePopup(popup) {
     popup.classList.remove('popup_opened');
-    document.removeEventListener('keydown', this._closeEsc);
+    document.removeEventListener('keydown', (evt) => {
+      if (evt.key === 'Escape' && popup) {                                              // Если ключ кнопки равен Esc, то  
+        this._closePopup(popup);                                                              // И удаляем класс у попапа 
+      }
+    });
   }
   
   _imageCard() {
@@ -69,14 +49,15 @@ export class Card {
     this._openPopup(this.imagePopup);                                                          // Меняем класс у попапа картинки 
     this.popupTitle.textContent = this.name;                                                  // Значению текста попапа присваиваем значение name из массива карточек 
     this.popupImg.src = this.link;                                                            // Значению ссылки картинки присваиваем значение link из массива карточек 
-    this.popupImg.alt = this.name;                                                            // Значению alt картинки присваиваем значение name из массива карточек 
+    this.popupImg.alt = this.name;                                                            // Значению alt картинки присваиваем значение name из массива карточек
   }
 
   createCard() {
     this._element = this._getTemplate()
-
-    this._element.querySelector('.card__img').src = this.link;                                
-    this._element.querySelector('.card__img').alt = this.name;                               
+    
+    const cardImg = this._element.querySelector('.card__img');
+    cardImg.src = this.link;                                
+    cardImg.alt = this.name;                               
     this._element.querySelector('.card__title').textContent = this.name;
 
     const deleteButton = this._element.querySelector('.card__trash-btn');
@@ -92,7 +73,7 @@ export class Card {
       this._likeCard();                                                               
     });
 
-    this._element.querySelector('.card__img').addEventListener('click', () => {          
+    cardImg.addEventListener('click', () => {          
       this._imageCard();
     });
 

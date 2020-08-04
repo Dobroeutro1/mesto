@@ -1,14 +1,58 @@
-import { initialCards, Card } from './Card.js';
-import { FormValidator, formObj } from './FormValidator.js';
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
 
-const validProfile = new FormValidator(formObj, document.querySelector('.popup__form-profile'))
-const validCard = new FormValidator(formObj, document.querySelector('.popup__form-card'))
+// Карточки из коробки 
+
+const initialCards = [ 
+  {
+    name: 'Архыз', 
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg' 
+  },
+  {
+    name: 'Челябинская область', 
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg' 
+  },
+  {
+    name: 'Иваново', 
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg' 
+  },
+  {                                                                                                       // Массив карточек 
+    name: 'Камчатка', 
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg' 
+  },
+  {
+    name: 'Холмогорский район', 
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg' 
+  },
+  {
+    name: 'Байкал', 
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg' 
+  }
+];
+
+const formObj = {                                                                   // Функция включения валидации 
+  formSelector: '.popup__form',                                                     // Форма 
+  inputSelector: '.popup__input',                                                   // Инпут формы 
+  submitButtonSelector: '.popup__save-btn',                                         // Кнопка сохранить 
+  inactiveButtonClass: 'popup__save-btn_error',                                     // Класс неактивной кнопки 
+  inputErrorClass: 'popup__input_error',                                            // Класс ошибки 
+  errorClass: 'popup__input-error_active'                                           // Класс активной ошибки 
+};
+// Значение полей ввода 
+const formProfile = document.querySelector('.popup__form-profile');                 // Получаем форму профиля 
+const formCard = document.querySelector('.popup__form-card');                       // Получаем форму карточки 
+const nameInputProfile = document.querySelector('#name-profile');                   // Получаем инпут попапа имени профиля 
+const jobInputProfile = document.querySelector('#about-profile');                   // Получаем инпут попапа "о себе" профиля 
+const profileName = document.querySelector('.profile__title');                      // Получаем имя профиля 
+const profileAbout = document.querySelector('.profile__subtitle');                  // Получаем "о себе" профиля 
+
+const validProfile = new FormValidator(formObj, formProfile)
+const validCard = new FormValidator(formObj, formCard)
 validProfile.enableValidation()
 validCard.enableValidation()
 
 const cards = document.querySelector('.cards');                                     // Получаем блок карточек
 const cardTemplate = document.querySelector('.card-template').content;              // Получаем разметку карточки 
-
 
 function closeEsc(evt) {
   const popup = document.querySelector('.popup_opened');                            // Вводим модификатор открытия попапа
@@ -29,19 +73,19 @@ function closePopup(popup) {
 
 initialCards.forEach( (initialCardsElement) => {                                    // Перебираем массив с карточками 
   cards.append(new Card(cardTemplate, initialCardsElement.name, initialCardsElement.link).createCard());                                                               // Используем функцию создания карточки с аргументами имени и ссылки из массива карточек 
-}); 
+});
 
 const nameInputCard = document.querySelector('#name-card');                         // Получаем инпут названия карточки 
 const linkInputCard = document.querySelector('#link-card');                         // Получаем инпут ссылки картинки 
- 
+
 // Функция добавления карточки 
 function addCard() { 
   createCard(nameInputCard.value, linkInputCard.value);                             // Используем функцию создания карточки с аргументами инпутов названия и ссылки 
-} 
- 
+}
+
 const createCardButton = document.querySelector('.popup__create-card');             // Получаем кнопку создания карточки 
 createCardButton.addEventListener('submit', addCard);                               // Обработчик отправки функции создания карточки 
- 
+
 // Открытие/закрытие поп-апа 
 const addButton = document.querySelector('.profile__add-btn');                      // Получаем кнопку добавления карточки 
 const editButton = document.querySelector('.profile__edit-btn');                    // Получаем кнопку редактирования профиля 
@@ -79,28 +123,24 @@ popupList.forEach( (popupListElement) => {                                      
   popupListElement.addEventListener('mousedown', (evt) => {                         // Обработчик на нажатие ЛКМ 
     if (evt.target.classList.contains('popup')) {                                   // Условие: если выбранный элемент содержит класс popup, 
       closePopup(popup);
-    } 
-  }); 
+    }
+  });
 }); 
- 
-// Значение полей ввода 
-const formProfile = document.querySelector('.popup__form-profile');                 // Получаем форму профиля 
-const formCard = document.querySelector('.popup__form-card');                       // Получаем форму карточки 
-const nameInputProfile = document.querySelector('#name-profile');                   // Получаем инпут попапа имени профиля 
-const jobInputProfile = document.querySelector('#about-profile');                   // Получаем инпут попапа "о себе" профиля 
-const profileName = document.querySelector('.profile__title');                      // Получаем имя профиля 
-const profileAbout = document.querySelector('.profile__subtitle');                  // Получаем "о себе" профиля 
- 
+
 // Функция обработчик профиля 
 function formSubmitHandlerProfile () { 
   profileName.textContent = nameInputProfile.value;                                 // Текст имени профиля равен значению инпута имени профиля 
   profileAbout.textContent = jobInputProfile.value;                                 // Текст "о себе" профиля равен значению инпута "о себе" профиля 
-} 
- 
+}
+
 // Функция обработчик карточки 
 function formSubmitHandlerCard () { 
   cards.prepend(new Card(cardTemplate, nameInputCard.value, linkInputCard.value).createCard());              // Используем функцию создания карточки с аргументами имени и ссылки
-} 
+  saveButton.forEach( (elem) => {
+    elem.disabled = true;
+    elem.classList.add('popup__save-btn_error');
+  })
+}
 
 formProfile.addEventListener('submit', formSubmitHandlerProfile);                   // Обработчик формы профиля 
 formCard.addEventListener('submit', formSubmitHandlerCard);                         // Обработчик формы карточки 

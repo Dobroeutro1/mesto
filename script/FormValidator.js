@@ -75,15 +75,3 @@ export class FormValidator {
       this._setEventListeners();
   }
 }
-
-export const formObj = {                                                                   // Функция включения валидации 
-  formSelector: '.popup__form',                                                     // Форма 
-  inputSelector: '.popup__input',                                                   // Инпут формы 
-  submitButtonSelector: '.popup__save-btn',                                         // Кнопка сохранить 
-  inactiveButtonClass: 'popup__save-btn_error',                                     // Класс неактивной кнопки 
-  inputErrorClass: 'popup__input_error',                                            // Класс ошибки 
-  errorClass: 'popup__input-error_active'                                           // Класс активной ошибки 
-};
-
-// const validProfile = new FormValidator(formObj, document.querySelector('.popup__form-profile')).enableValidation()
-// const validCard = new FormValidator(formObj, document.querySelector('.popup__form-card')).enableValidation()
