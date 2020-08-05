@@ -1,4 +1,4 @@
-import { Card } from './fdfdfd.js';
+import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
 
 // Карточки из коробки 
