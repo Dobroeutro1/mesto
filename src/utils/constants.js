@@ -35,8 +35,6 @@ export const formObj = {                                                        
   errorClass: 'popup__input-error_active'                                           // Класс активной ошибки
 };
 
-export const formProfile = document.querySelector('.popup__form-profile');                 // Получаем форму профиля
-export const formCard = document.querySelector('.popup__form-card');                       // Получаем форму карточки
 export const nameInputProfile = document.querySelector('#name-profile');                   // Получаем инпут попапа имени профиля
 export const jobInputProfile = document.querySelector('#about-profile');                   // Получаем инпут попапа "о себе" профиля
 export const profileName = document.querySelector('.profile__title');                      // Получаем имя профиля
@@ -45,14 +43,14 @@ export const cards = document.querySelector('.cards');                          
 export const cardTemplate = document.querySelector('.card-template').content;              // Получаем разметку карточки
 export const addButton = document.querySelector('.profile__add-btn');                      // Получаем кнопку добавления карточки
 export const editButton = document.querySelector('.profile__edit-btn');                    // Получаем кнопку редактирования профиля
-export const closeButton = document.querySelectorAll('.popup__close-btn');                 // Получаем все кнопки закрытия попапа
-// export const saveButton = document.querySelectorAll('.popup__save-btn');                   // Получаем все кнопки сохранить
-export const popupList = document.querySelectorAll('.popup');                              // Получаем все оверлеи попапов
 export const popupProfile = document.querySelector('[data-popup-name=popup-profile]');     // Получаем попап профиля
 export const popupCard = document.querySelector('[data-popup-name=popup-card]');           // Получаем попап добавления карточки
 export const popupImage = document.querySelector('[data-popup-name=popup-image]');
-export const nameInputCard = document.querySelector('#name-card');                         // Получаем инпут названия карточки
-export const linkInputCard = document.querySelector('#link-card');                         // Получаем инпут ссылки картинки
-export const cardButton = document.querySelector('.popup__create-card');             // Получаем кнопку создания карточки
-export const profileButton = document.querySelector('.popup__save-profile');
+// export const popupList = document.querySelectorAll('.popup');                              // Получаем все оверлеи попапов
+// export const closeButton = document.querySelectorAll('.popup__close-btn');                 // Получаем все кнопки закрытия попапа
+// export const saveButton = document.querySelectorAll('.popup__save-btn');                   // Получаем все кнопки сохранить
+// export const nameInputCard = document.querySelector('#name-card');                         // Получаем инпут названия карточки
+// export const linkInputCard = document.querySelector('#link-card');                         // Получаем инпут ссылки картинки
+// export const cardButton = document.querySelector('.popup__create-card');             // Получаем кнопку создания карточки
+// export const profileButton = document.querySelector('.popup__save-profile');
 // export const cardImage = document.querySelectorAll('.card__img');

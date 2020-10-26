@@ -1,7 +1,7 @@
 export default class Card {
     constructor(cardTemplate, name, link, { handleCardClick }) {
-        this.name = name
-        this.link = link
+        this._name = name
+        this._link = link
         this.cardTemplate = cardTemplate
         this._handleCardClick = handleCardClick;
     }
@@ -13,12 +13,10 @@ export default class Card {
     }
 
     _deleteCard() {
-        // Удаление
-        this.card.remove();                                                                  // Удаляем карточку-родитель при клике
+        this._card.remove();                                                                  // Удаляем карточку-родитель при клике
     }
 
     _likeCard() {
-        // Like
         this.likeButton.classList.toggle('card__like-btn_liked');                            // Меняем класс у кнопки лайка при клике
     }
 
@@ -26,13 +24,13 @@ export default class Card {
         this._element = this._getTemplate()
 
         const cardImg = this._element.querySelector('.card__img');
-        cardImg.src = this.link;
-        cardImg.alt = this.name;
-        this._element.querySelector('.card__title').textContent = this.name;
+        cardImg.src = this._link;
+        cardImg.alt = this._name;
+        this._element.querySelector('.card__title').textContent = this._name;
 
         const deleteButton = this._element.querySelector('.card__trash-btn');
         const card = deleteButton.closest('.card')
-        this.card = card
+        this._card = card
         deleteButton.addEventListener('click', () => {
             this._deleteCard();
         });
