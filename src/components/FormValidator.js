@@ -1,5 +1,5 @@
 // Валидация
-export class FormValidator {
+export default class FormValidator {
   constructor(obj, formElement) {
     this._obj = obj
     this._formElement = formElement
@@ -69,9 +69,9 @@ export class FormValidator {
 
   // Функция применения валидации
   enableValidation() {
-      this._formElement.addEventListener('submit', (evt) => {
-        evt.preventDefault();
-      });
-      this._setEventListeners();
+    this._formElement.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+    });
+    this._setEventListeners();
   }
 }
