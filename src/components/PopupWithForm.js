@@ -31,19 +31,3 @@ export default class PopupWithForm extends Popup{
         super.close();
     }
 }
-
-// _getInputValues() {
-//     const formInputName = this._form.querySelectorAll('.popup__input_name');
-//     const formInputTitle = this._form.querySelectorAll('.popup__input_title');
-//
-//     return {
-//         name: formInputName.value,
-//         title: formInputTitle.value
-//     };
-// }
-
-// setEventListeners() {
-//     this._getInputValues();
-//     super.setEventListeners();
-//     this._callBackSubmitForm();
-// }

@@ -45,7 +45,7 @@ export default class FormValidator {
   }
 
   // Функция добавления/удаления класса кнопки
-  _toggleButtonState() {
+  toggleButtonState() {
     if (this._hasInvalidInput()) {
       this._submitButtonSelector.classList.add(this._inactiveButtonClass);
       this._submitButtonSelector.disabled = true;
@@ -57,12 +57,12 @@ export default class FormValidator {
 
   // Функция обработчик на каждый инпут формы
   _setEventListeners() {
-    this._toggleButtonState();
+    this.toggleButtonState();
 
     this._inputSelector.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement);
-        this._toggleButtonState();
+        this.toggleButtonState();
       });
     });
   }
