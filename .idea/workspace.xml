@@ -25,24 +25,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8fd64e12-bc8c-4e2e-9b3c-fbd553a1b031" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/dist/12547780e6986404d07f89f41df07b1c.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/15bbe3b76e0bedd9c4d5705dbd86da14.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/223f012ebd08f3266d8f952977cb95d1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/23eb804eb49e365fa2f1d72040dc4cf8.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/2505c0d4b34ffca98f8f8852e24928eb.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/2b48ed0703adbb9d5e8904780226e1f0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/3c747ac4004be3a30e9807662caebaa0.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/60df8f67f4333142c6a9502786951791.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/87587e34cbae92f132bb2ee047a54e5e.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/c15cb08ab8ecfaba54c6f9584bbc61a1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/cf04ffc48ff3fd604b3736d2b31edb55.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/d8f7088469a765c719b4737dbbca775d.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/e771cd613bd25878a5492be26c54462d.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.js" beforeDir="false" />
-    </list>
+    <list default="true" id="8fd64e12-bc8c-4e2e-9b3c-fbd553a1b031" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -89,7 +72,7 @@
       <workItem from="1601227331887" duration="1055000" />
       <workItem from="1601228426147" duration="90000" />
       <workItem from="1602781592189" duration="194000" />
-      <workItem from="1602781860796" duration="121802000" />
+      <workItem from="1602781860796" duration="121879000" />
     </task>
     <servers />
   </component>
