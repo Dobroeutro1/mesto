@@ -13,13 +13,15 @@
   <main class="content">
 
     <section class="profile">
-      <img src="images/avatar.jpg" alt="Аватар" class="profile__avatar">
+      <div class="profile__img">
+        <img src="#" alt="Аватар" class="profile__avatar">
+      </div>
       <div class="profile__info">
         <div class="profile__top">
-          <h1 class="profile__title">Жак-Ив Кусто</h1>
+          <h1 class="profile__title"></h1>
           <button class="profile__edit-btn"></button>
         </div>
-        <p class="profile__subtitle">Исследователь океана</p>
+        <p class="profile__subtitle"></p>
       </div>
       <button class="profile__add-btn"></button>
     </section>
@@ -30,7 +32,10 @@
           <img src="#" alt="" class="card__img">
           <div class="card__item">
             <h2 class="card__title"></h2>
-            <button class="card__like-btn"></button>
+            <div class="card__like">
+              <button class="card__like-btn"></button>
+              <p class="card__like-counter">0</p>
+            </div>
           </div>
           <button class="card__trash-btn"></button>
         </div>
@@ -46,9 +51,9 @@
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
       <form action="#" class="popup__form popup__form-profile" novalidate>
-        <input class="popup__input popup__input_name" type="text" name="name" id="name-profile" value="Жак-Ив Кусто" required minlength="2" maxlength="40">
+        <input class="popup__input popup__input_name" type="text" name="name" id="name-profile" value="" required minlength="2" maxlength="40">
         <span class="popup__input-error" id="name-profile-error"></span>
-        <input class="popup__input popup__input_title" type="text" name="link" id="about-profile" value="Исследователь океана" required minlength="2" maxlength="200">
+        <input class="popup__input popup__input_title" type="text" name="link" id="about-profile" value="" required minlength="2" maxlength="200">
         <span class="popup__input-error" id="about-profile-error"></span>
         <button type="submit" class="popup__save-btn popup__save-profile">
           <span>Сохранить</span>
@@ -79,6 +84,32 @@
       <img src="#" alt="#" class="popup__image">
       <h2 class="popup__title-img"></h2>
       <button class="popup__close-btn popup__close-btn-img"></button>
+    </div>
+  </section>
+
+  <section class="popup" data-popup-name="popup-confirm">
+    <div class="popup__container popup__container_confirm">
+      <h2 class="popup__title">Вы уверены?</h2>
+      <form action="#" class="popup__form popup__form-confirm" novalidate>
+        <button type="submit" class="popup__save-btn popup__confirm-btn">
+          <span>Да</span>
+        </button>
+      </form>
+      <button class="popup__close-btn popup__close-btn-confirm"></button>
+    </div>
+  </section>
+
+  <section class="popup" data-popup-name="popup-update">
+    <div class="popup__container popup__container_confirm">
+      <h2 class="popup__title">Обновить аватар</h2>
+      <form action="#" class="popup__form popup__form-profile-img" novalidate>
+        <input class="popup__input popup__input_title" type="URL" name="link" id="link-popup" placeholder="Ссылка на картинку" required>
+        <span class="popup__input-error" id="link-popup-error"></span>
+        <button type="submit" class="popup__save-btn popup__save-profile">
+          <span>Сохранить</span>
+        </button>
+      </form>
+      <button class="popup__close-btn popup__close-btn-confirm"></button>
     </div>
   </section>
 </body>

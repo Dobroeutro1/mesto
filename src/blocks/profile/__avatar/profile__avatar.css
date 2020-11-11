@@ -1,6 +1,12 @@
 .profile__avatar {
-  max-width: 120px;
+  width: 100%;
+  max-height: 120px;
   border-radius: 50%;
+  transition: opacity 0.5s linear;
+}
+
+.profile__avatar:hover {
+  opacity: 0.2;
 }
 
 @media screen and (max-width: 700px) {

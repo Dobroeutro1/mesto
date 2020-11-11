@@ -1,9 +1,17 @@
+import {cardTemplate} from "../utils/constants";
+
 export default class Card {
-    constructor(cardTemplate, name, link, { handleCardClick }) {
-        this._name = name
-        this._link = link
+    constructor(cardTemplate, item, myId, { handleCardClick, handleCardDelete, handleAddLikeCard, handleDeleteLikeCard }) {
+        this._item = item;
+        this._myId = myId;
+        this._name = this._item.name;
+        this._link = this._item.link
         this.cardTemplate = cardTemplate
+        this._id = this._item.owner._id;
         this._handleCardClick = handleCardClick;
+        this._handleCardDelete = handleCardDelete;
+        this._handleAddLikeCard = handleAddLikeCard;
+        this._handleDeleteLikeCard = handleDeleteLikeCard;
     }
 
     _getTemplate() {
@@ -12,12 +20,23 @@ export default class Card {
         return cardElement;
     }
 
-    _deleteCard() {
-        this._card.remove();                                                                  // Удаляем карточку-родитель при клике
+    deleteCard() {
+        this._card.remove();
     }
 
-    _likeCard() {
-        this.likeButton.classList.toggle('card__like-btn_liked');                            // Меняем класс у кнопки лайка при клике
+    getLikeCard() {
+        this.likeCounter.textContent = this._item.likes.length;
+        if (this._item.likes.some((like) => { return like._id === this._myId })) {
+            this.likeCard();
+        }
+    }
+
+    addLikeCard(card) {
+        this.likeCounter.textContent = card.likes.length;
+    }
+
+    likeCard() {
+        this.likeButton.classList.toggle('card__like-btn_liked');
     }
 
     createCard() {
@@ -27,22 +46,37 @@ export default class Card {
         cardImg.src = this._link;
         cardImg.alt = this._name;
         this._element.querySelector('.card__title').textContent = this._name;
+        cardImg.addEventListener('click', () => {
+            this._handleCardClick();
+        });
 
         const deleteButton = this._element.querySelector('.card__trash-btn');
-        const card = deleteButton.closest('.card')
-        this._card = card
+        const cardElement = deleteButton.closest('.card');
+        if (this._id !== "8c46c2c1eec7ea6894dea949") {
+            deleteButton.style.display = 'none'
+        }
+        this._card = cardElement
         deleteButton.addEventListener('click', () => {
-            this._deleteCard();
+            this._handleCardDelete();
         });
 
         const likeButton = this._element.querySelector('.card__like-btn');
-        this.likeButton = likeButton
-        this.likeButton.addEventListener('click', () => {
-            this._likeCard();
-        });
+        const likeCounter = this._element.querySelector('.card__like-counter');
+        this.likeButton = likeButton;
+        this.likeCounter = likeCounter;
 
-        cardImg.addEventListener('click', () => {
-            this._handleCardClick();
+        this.getLikeCard();
+
+        this.likeButton.addEventListener('click', () => {
+            this.likeCard();
+
+            if (this.likeButton.classList.contains('card__like-btn_liked')) {
+                this._handleAddLikeCard();
+                // this.getLikeCard();
+            } else {
+                this._handleDeleteLikeCard();
+                // this.getLikeCard();
+            }
         });
 
         return this._element
