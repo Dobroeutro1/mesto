@@ -11,7 +11,6 @@ import {
     formProfile,
     formCard,
     formProfileImage,
-    formObj,
     nameInputProfile,
     jobInputProfile,
     profileName,
@@ -28,6 +27,14 @@ import {
     popupUpdateImageProfile,
     profileAvatar,
 } from "../utils/constants.js";
+
+const formObj = {                                                                            // Функция включения валидации
+    inputSelector: '.popup__input',                                                                   // Инпут формы
+    submitButtonSelector: '.popup__save-btn',                                                         // Кнопка сохранить
+    inactiveButtonClass: 'popup__save-btn_error',                                                     // Класс неактивной кнопки
+    inputErrorClass: 'popup__input_error',                                                            // Класс ошибки
+    errorClass: 'popup__input-error_active'                                                           // Класс активной ошибки
+};
 
 const api = new Api({
         baseUrl: 'https://mesto.nomoreparties.co/v1/',
@@ -51,23 +58,29 @@ const popupCardConfirm = new PopupWithConfirm(popupConfirm, {
         api.deleteCard(id)
             .then(() => {
                 card.deleteCard();
+                popupCardConfirm.close();
             })
             .catch((err) => {
                 console.log(err);
             })
-        popupCardConfirm.close();
+            .finally(() => {
+                popupConfirm.querySelector('.popup__save-btn').textContent = 'Да';
+            })
     }
 });
 const cardForm = new PopupWithForm(popupCard, {
     callBackSubmitForm: (item) => {
-        console.log(item)
         renderIsLoading(true, popupCard.querySelector('.popup__save-btn'))
         api.addNewCard(item)
             .then((card) => {
-                defaultCard.addItemPrepend(newCard(card).createCard());
+                defaultCard.addItemPrepend(newCard(card, card.owner._id).createCard());
+                cardForm.close();
             })
             .catch((err) => {
                 console.log(err);
+            })
+            .finally(() => {
+                popupCard.querySelector('.popup__save-btn').textContent = 'Создать';
             })
     }
 });
@@ -77,9 +90,13 @@ const profileImageForm = new PopupWithForm(popupUpdateImageProfile, {
         api.changeUserAvatar(item.link)
             .then(() => {
                 profileAvatar.src = item.link;
+                profileImageForm.close();
             })
             .catch((err) => {
                 console.log(err);
+            })
+            .finally(() => {
+                popupUpdateImageProfile.querySelector('.popup__save-btn').textContent = 'Сохранить';
             })
     }
 })
@@ -88,10 +105,14 @@ const profileForm = new PopupWithForm(popupProfile, {
         renderIsLoading(true, popupProfile.querySelector('.popup__save-btn'))
         api.changeUserInfo(item.name, item.link)
             .then((data) => {
-                userInfo.setUserInfo(data.name, data.about);
+                userInfo.setUserInfo(data.name, data.about, data.avatar);
+                profileForm.close();
             })
             .catch((err) => {
                 console.log(err);
+            })
+            .finally(() => {
+                popupProfile.querySelector('.popup__save-btn').textContent = 'Сохранить';
             })
     }
 });
@@ -111,7 +132,8 @@ function newCard(item, myId) {
         handleAddLikeCard: () => {
             api.addLike(item)
                 .then((data) => {
-                    newCard.addLikeCard(data)
+                    newCard.likeCard();
+                    newCard.setLikeCard(data)
                 })
                 .catch((err) => {
                     console.log(err);
@@ -120,7 +142,8 @@ function newCard(item, myId) {
         handleDeleteLikeCard: () => {
             api.deleteLike(item)
                 .then((data) => {
-                    newCard.addLikeCard(data);
+                    newCard.likeCard();
+                    newCard.setLikeCard(data);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -151,10 +174,10 @@ profileButton.addEventListener('click', () => {
 });
 
 editButton.addEventListener('click', () => {
-    profileForm.open();
     const userInfoValues = userInfo.getUserInfo();
     nameInputProfile.value = userInfoValues.name;
     jobInputProfile.value = userInfoValues.info;
+    profileForm.open();
 });
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])

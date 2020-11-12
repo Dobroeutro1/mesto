@@ -1,11 +1,3 @@
-export const formObj = {                                                                            // Функция включения валидации
-  formSelector: '.popup__form',                                                                     // Форма
-  inputSelector: '.popup__input',                                                                   // Инпут формы
-  submitButtonSelector: '.popup__save-btn',                                                         // Кнопка сохранить
-  inactiveButtonClass: 'popup__save-btn_error',                                                     // Класс неактивной кнопки
-  inputErrorClass: 'popup__input_error',                                                            // Класс ошибки
-  errorClass: 'popup__input-error_active'                                                           // Класс активной ошибки
-};
 export const formProfile = document.querySelector('.popup__form-profile');                 // Получаем форму профиля
 export const formCard = document.querySelector('.popup__form-card');                       // Получаем форму карточки
 export const formProfileImage = document.querySelector('.popup__form-profile-img');
@@ -22,6 +14,5 @@ export const cards = document.querySelector('.cards');                          
 export const cardTemplate = document.querySelector('.card-template').content;              // Разметка карточки
 export const addButton = document.querySelector('.profile__add-btn');                      // Кнопка добавления карточки
 export const editButton = document.querySelector('.profile__edit-btn');                    // Кнопка редактирования профиля
-export const confirmButton = document.querySelector('.popup__confirm-btn');
 export const profileButton = document.querySelector('.profile__img');
 export const profileAvatar = document.querySelector('.profile__avatar');

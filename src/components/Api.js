@@ -18,12 +18,6 @@ export default class Api {
                     return Promise.reject(`Ошибка: ${res.status}`)
                 }
             })
-            .then((data) => {
-                return data;
-            })
-            .catch((err) => {
-                console.log(err);
-            })
     }
 
     getInitialCards() {
@@ -38,12 +32,6 @@ export default class Api {
                 } else {
                     return Promise.reject(`Ошибка: ${res.status}`)
                 }
-            })
-            .then((data) => {
-                return data;
-            })
-            .catch((err) => {
-                console.log(err);
             })
     }
 
@@ -66,9 +54,6 @@ export default class Api {
                     return Promise.reject(`Ошибка: ${res.status}`)
                 }
             })
-            .catch((err) => {
-                console.log(err);
-            })
     }
 
     changeUserAvatar(avatarLink) {
@@ -88,9 +73,6 @@ export default class Api {
                 } else {
                     return Promise.reject(`Ошибка: ${res.status}`)
                 }
-            })
-            .catch((err) => {
-                console.log(err);
             })
     }
 
@@ -113,9 +95,6 @@ export default class Api {
                     return Promise.reject(`Ошибка: ${res.status}`)
                 }
             })
-            .catch((err) => {
-                console.log(err);
-            })
     }
 
     deleteCard(cardId) {
@@ -132,9 +111,6 @@ export default class Api {
                 } else {
                     return Promise.reject(`Ошибка: ${res.status}`)
                 }
-            })
-            .catch((err) => {
-                console.log(err);
             })
     }
 
@@ -153,9 +129,6 @@ export default class Api {
                     return Promise.reject(`Ошибка: ${res.status}`)
                 }
             })
-            .catch((err) => {
-                console.log(err);
-            })
     }
 
     deleteLike(card) {
@@ -173,8 +146,5 @@ export default class Api {
                     return Promise.reject(`Ошибка: ${res.status}`)
                 }
             })
-            .catch((err) => {
-                console.log(err);
-            });
     }
 }

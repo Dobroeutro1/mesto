@@ -15,12 +15,13 @@ module.exports = {
                 loader: 'babel-loader',
                 exclude: '/node_modules/'
             },
-            // добавили правило для обработки файлов
             {
-                // регулярное выражение, которое ищет все файлы с такими расширениями
-                test: /\.(png|svg|jpg|gif|woff2)$/,
-                // при обработке этих файлов нужно использовать file-loader
-                loader: 'file-loader'
+                test: /\.(png|svg|jpg|gif)$/,
+                loader: 'file-loader?name=./images/[name].[ext]'
+            },
+            {
+                test: /\.(eot|ttf|woff|woff2)$/,
+                loader: 'file-loader?name=./vendor/[name].[ext]',
             },
             // аналогично добавьте правило для работы с html
             {

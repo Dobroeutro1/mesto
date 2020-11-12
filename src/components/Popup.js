@@ -1,6 +1,6 @@
 export default class Popup {
-    constructor(popupSelector) {
-        this._popup = popupSelector;
+    constructor(popup) {
+        this._popup = popup;
         this._handleEscClose = this._handleEscClose.bind(this);
     }
 
@@ -15,8 +15,8 @@ export default class Popup {
     }
 
     _handleEscClose(evt) {
-            if (evt.key === 'Escape' && this._popup) {
-                this.close(this._popup);
+            if (evt.key === 'Escape') {
+                this.close();
             }
     }
 
