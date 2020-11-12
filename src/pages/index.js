@@ -52,9 +52,10 @@ const defaultCard = new Section({
         defaultCard.addItem(newCard(item, myId).createCard());
     }
 }, cards);
+const popupConfirmSubmitButton = popupConfirm.querySelector('.popup__save-btn');
 const popupCardConfirm = new PopupWithConfirm(popupConfirm, {
     handlerSubmitForm: (id, card) => {
-        renderIsLoading(true, popupConfirm.querySelector('.popup__save-btn'))
+        renderIsLoading(true, popupConfirmSubmitButton, 'Да');
         api.deleteCard(id)
             .then(() => {
                 card.deleteCard();
@@ -64,13 +65,14 @@ const popupCardConfirm = new PopupWithConfirm(popupConfirm, {
                 console.log(err);
             })
             .finally(() => {
-                popupConfirm.querySelector('.popup__save-btn').textContent = 'Да';
+                renderIsLoading(false, popupConfirmSubmitButton, 'Да');;
             })
     }
 });
+const  popupCardSubmitButton = popupCard.querySelector('.popup__save-btn');
 const cardForm = new PopupWithForm(popupCard, {
     callBackSubmitForm: (item) => {
-        renderIsLoading(true, popupCard.querySelector('.popup__save-btn'))
+        renderIsLoading(true, popupCardSubmitButton, 'Создать');
         api.addNewCard(item)
             .then((card) => {
                 defaultCard.addItemPrepend(newCard(card, card.owner._id).createCard());
@@ -80,13 +82,14 @@ const cardForm = new PopupWithForm(popupCard, {
                 console.log(err);
             })
             .finally(() => {
-                popupCard.querySelector('.popup__save-btn').textContent = 'Создать';
+                renderIsLoading(false, popupCardSubmitButton, 'Создать');;
             })
     }
 });
+const popupUpdateImageSubmitButton = popupUpdateImageProfile.querySelector('.popup__save-btn');
 const profileImageForm = new PopupWithForm(popupUpdateImageProfile, {
     callBackSubmitForm: (item) => {
-        renderIsLoading(true, popupUpdateImageProfile.querySelector('.popup__save-btn'))
+        renderIsLoading(true, popupUpdateImageSubmitButton, 'Сохранить');
         api.changeUserAvatar(item.link)
             .then(() => {
                 profileAvatar.src = item.link;
@@ -96,13 +99,14 @@ const profileImageForm = new PopupWithForm(popupUpdateImageProfile, {
                 console.log(err);
             })
             .finally(() => {
-                popupUpdateImageProfile.querySelector('.popup__save-btn').textContent = 'Сохранить';
+                renderIsLoading(false, popupUpdateImageSubmitButton, 'Сохранить');
             })
     }
 })
+const popupProfileSubmitButton = popupProfile.querySelector('.popup__save-btn');
 const profileForm = new PopupWithForm(popupProfile, {
     callBackSubmitForm: (item) => {
-        renderIsLoading(true, popupProfile.querySelector('.popup__save-btn'))
+        renderIsLoading(true, popupProfileSubmitButton, 'Сохранить');
         api.changeUserInfo(item.name, item.link)
             .then((data) => {
                 userInfo.setUserInfo(data.name, data.about, data.avatar);
@@ -112,13 +116,15 @@ const profileForm = new PopupWithForm(popupProfile, {
                 console.log(err);
             })
             .finally(() => {
-                popupProfile.querySelector('.popup__save-btn').textContent = 'Сохранить';
+                renderIsLoading(false, popupProfileSubmitButton, 'Сохранить');
             })
     }
 });
-function renderIsLoading(isLoading, button) {
+function renderIsLoading(isLoading, button, buttonDefaultText) {
     if (isLoading) {
         button.textContent = 'Сохранение...'
+    } else {
+        button.textContent = buttonDefaultText;
     }
 }
 function newCard(item, myId) {
